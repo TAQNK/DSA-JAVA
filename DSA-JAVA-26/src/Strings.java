@@ -237,8 +237,146 @@ public class Strings {
 		return str;
 	}
 		
+	public static String  occurenceDuplicateChar(String s) {
+		String str = "";
+		char ch[]  = s.toCharArray();
+		for(int i = 0 ; i < s.length() ; i++){
+			char count = '1' ; 
+			if(ch[i] >= '0' && ch[i] <= '9') {
+				str+=ch[i];
+				continue ;
+			}//  skip the numbers intialization for ch[i] again 
+			for(int j = i +1 ; j  <s.length() ; j++) {
+				if(ch[i] == ch[j]) {
+					count ++;
+					ch[j] = count ; 
+				}
+			}
+			if(count > '1')ch[i] = '1';
+			str += ch[i];
+		}
+		return str;
+	}
 	
-	public static void main(String[] args) {
+	public static char[] stringInitCap(String s) {
+		char ch[] = s.toCharArray();
+		for(int i = 0 ; i< s.length() ; i++) {
+			if( ch[i] == ' ')continue ;
+			if(ch[i] >= 'a'&& ch[i] <= 'z') ch[i] -= 32 ;
+			int j = i+1;
+			for( ; j <s.length() ; j++) {
+				if(ch[j] ==' ') {
+					break;
+				}
+			}
+			i = j ; 
+		}
+		return ch;
+	}
+	// other simpler way 
+	public static char[] stringInitCap2(String s) {
+		char [] ch = s.toCharArray();
+		for(int i = 0 ; i <s.length() ; i++) {
+			if(ch[i] >= 'a' && ch[i] <= 'z') {
+				if( i == 0 ||ch[i-1] == ' ') {
+					ch[i] -= 32;
+				}
+				
+			}
+		}
+		return ch ;
+	}
+	
+	public static char [] encoderDecoder(String s , int n ) {
+		char[] ch = s.toCharArray();
+		for(int i = 0 ; i < s.length() ;i++) {
+			if(ch[i] >= 'a' && ch[i] <= 'z') {
+				ch[i] = (char) ((char)((((ch[i] + n - 'a')% 26 )+ 26) % 26) + 'a');
+			}
+
+		}
+		return ch;
+		
+	}
+	
+	public static char[] ascendingOrderString(String s) {
+		char[] ch = s.toCharArray();
+		for(int i =  0 ; i < s.length() -1 ; i++) {
+			for(int j = i +1 ; j < s.length() ; j++) {
+				if(ch[i] > ch[j]) {
+					char temp = ch[i];
+					ch[i] = ch[j];
+					ch[j] = temp ; 
+				}
+			}
+		}
+		return ch ;
+		}
+	public static char[] descendingOrderString(String s) {
+		char[] ch = s.toCharArray();
+		for(int i =  0 ; i < s.length() -1 ; i++) {
+			for(int j = i +1 ; j < s.length() ; j++) {
+				if(ch[i] < ch[j]) {
+					char temp = ch[i];
+					ch[i] = ch[j];
+					ch[j] = temp ; 
+				}
+			}
+		}
+		return ch ;
+		}
+	
+	public static int occuranceOfkeyInString(String s,  char key) {
+		for(int  i = 0 ; i <s.length() ; i++) {
+			if(s.charAt(i) == key) {
+				return i;
+			}
+		}
+		return -1 ;
+	}
+	public static boolean isStringPanagram(String s) {
+		s = s.toLowerCase();
+		if(s.length() < 26)return false;
+		s = s.toLowerCase();
+	
+		for(char c = 'a' ; c <= 'z'; c++) {
+			if(!s.contains(c+"")) {
+				return false;
+			}
+		}
+		return true;
+		
+	}
+	
+	public static String removeDuplicateUsingStringBuildMethod(String s) {
+		String ans= "";
+		s = s.toLowerCase();
+		for(int i = 0 ; i <s.length() ; i ++) {
+			if(ans.contains(s.charAt(i)+"")){
+				continue ;
+			}
+			ans += s.charAt(i);
+			
+		}
+		
+		return ans ;
+	}
+	
+	public static String printingMissingVowels(String s) {
+		String missing = "";
+		String vowels = "aeiou";
+		s = s.toLowerCase();
+			for(int j = 0 ; j  <vowels.length() ; j++) {
+				if(!s.contains(vowels.charAt(j) +"")) {
+					missing += vowels.charAt(j);
+				}
+			}
+			
+		return missing ; 
+		
+	}
+	
+ 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String s = "Java is easy";
 //		System.out.println(reverseSyntax(s));
@@ -254,6 +392,17 @@ public class Strings {
 //		System.out.println(duplicateCharsInString("jjjava "));
 //		System.out.println(replaceConescutiveSWith$("SAVASSAS"));
 //		System.out.println(replaceVowelCount3ORGreaterWith_("jvdev"));
+//		System.out.println(occurenceDuplicateChar("ramanaa kumar"));
+//		System.out.println(stringInitCap2("java is easy heellooe eqwe  eqwew qwe"));
+//		System.out.println(encoderDecoder("Hi i am tanihsq.!!!" , 3));
+//		System.out.println(encoderDecoder("Hl l dp wdqlkvt.!!!" ,-3));
+//		System.out.println(ascendingOrderString("azuma"));
+//		System.out.println(descendingOrderString("azuma"));
+//		System.out.println(occuranceOfkeyInString("azuma", 'u'));
+//		System.out.println(occuranceOfkeyInString("azuma", 'k'));
+		System.out.println(isStringPanagram("my name is tanishq"));
+		System.out.println(removeDuplicateUsingStringBuildMethod("Java is easy"));
+		System.out.println(printingMissingVowels("Am Indian"));
 	}
 
 }
@@ -271,3 +420,7 @@ public class Strings {
 //question - vowel char to _(underscore)  if vowel count >= 3 
 //input  - javadev output - j_v_d_v
 //input - java output - java 
+
+
+// question  - printing the missing vowel in the given string
+// input : "Am Indian" output : "EOUeon"
