@@ -8,7 +8,7 @@
 // Is to check weather the index elemet + 1 is 10 or not if not then i can plus 1 and return arr 
 // but if equal to 10 then just make that index element to be 0 and repeat the iteration if whole length of arr is parsed then all elements will be 0
 // then make a new array and make 0th index element to be 1 and return arr 
-
+//
 import java.util.Arrays;
 
 public class addOne66 {
