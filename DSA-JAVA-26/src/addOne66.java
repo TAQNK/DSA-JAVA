@@ -28,7 +28,6 @@ public class addOne66 {
 	public static void main(String[] args) {
 		System.out.println(Arrays.toString(addOne(new int[]{1,2,3})));
 		System.out.println(Arrays.toString(addOne(new int[]{9})));
-	
 	}
 
 }
