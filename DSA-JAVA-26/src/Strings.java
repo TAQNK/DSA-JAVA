@@ -395,6 +395,70 @@ public class Strings {
 			printPermutation(s1 , st+1 , end);
 		}
 	}
+	
+	public static String reverseTheWordsPlacementUsingSplit(String s) {
+		String[] strArr = s.split(" ");
+		String rev = "";
+		for(int i = strArr.length -1 ; i >= 0 ; i--) {
+			rev += strArr[i];
+			rev += " ";
+		}
+		return rev.trim();
+	}
+	
+	public static String reverseTheWordsOfAGivenStringUsingSplit(String s) {
+		String[] strArr = s.split(" ");
+		String rev = "";
+		for(String str : strArr) {
+			for(int i = str.length() - 1 ; i >= 0 ; i--) {
+				rev += str.charAt(i);
+			}
+			rev += " ";
+		}
+		return rev.trim();
+	}
+	public static void printPalindormsInStringUsingSplit(String s) {
+		String[] strArr = s.split(" ");
+		for(String str : strArr) {
+			int i = 0 ;
+			int j = str.length() - 1;
+			boolean flag = true;
+			while(i < j) {
+				if(str.charAt(i) != str.charAt(j)) {
+					flag = false;
+					break;
+				}
+				i ++;
+				j --;
+			}
+			if(flag)
+			System.out.println(str);
+		}
+	}
+	public static void printBiggestPalindromInStringUsingSplit(String s) {
+		String[] strArr = s.split(" ");
+		String biggestPalindrome = "";
+		for(String str : strArr) {
+			int i = 0 ;
+			int j = str.length() - 1;
+			boolean flag = true;
+			while(i < j) {
+				if(str.charAt(i) != str.charAt(j)) {
+					flag = false;
+					break;
+				}
+				i ++;
+				j --;
+			}
+			if(flag)
+			{
+				if(biggestPalindrome.length() < str.length()) {
+					biggestPalindrome = str;
+				}
+			}
+		}
+		System.out.println(biggestPalindrome);
+	}
  	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String s = "Java is easy";
@@ -422,7 +486,11 @@ public class Strings {
 //		System.out.println(isStringPanagram("my name is tanishq"));
 //		System.out.println(removeDuplicateUsingStringBuildMethod("Java is easy"));
 //		System.out.println(printingMissingVowels("Am Indian"));
-		printPermutation("abc" , 0 , 2);
+//		printPermutation("abc" , 0 , 2);
+//		System.out.println(reverseTheWordsPlacementUsingSplit("java is easy"));
+//		System.out.println(reverseTheWordsOfAGivenStringUsingSplit("java is easy"));
+//		printPalindormsInStringUsingSplit("madam is from malayalam");
+		printBiggestPalindromInStringUsingSplit("madam knows only malayalam");
 	}
 
 }
