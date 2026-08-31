@@ -25,9 +25,11 @@ public class addOne66 {
 		newDigits[0] = 1;
 		return newDigits;
 	}
+	 
 	public static void main(String[] args) {
-		System.out.println(Arrays.toString(addOne(new int[]{1,2,3})));
-		System.out.println(Arrays.toString(addOne(new int[]{9})));
+//		System.out.println(Arrays.toString(addOne(new int[]{1,2,3})));
+//		System.out.println(Arrays.toString(addOne(new int[]{9})));
+//		System.out.println(multiply("2","3"));
 	}
 
 }
