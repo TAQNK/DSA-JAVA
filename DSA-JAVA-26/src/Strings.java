@@ -375,7 +375,26 @@ public class Strings {
 		return missing ; 
 		
 	}
+	public static String swap(String s , int i , int j) {
+		char[] ch = s.toCharArray();
+		char temp = ch[i];
+		ch[i] = ch[j];
+		ch[j] = temp; 
+		String ans = "";
+		for(char c : ch) {
+			ans += c;
+		}
+		return ans ;
+	}
 	
+	public static void printPermutation(String s , int st , int end) {
+		if(st == end) {System.out.println(s); return;}
+		
+		for(int i = st ; i <= end ;i++) { 
+			String s1 = swap(s , st , i);
+			printPermutation(s1 , st+1 , end);
+		}
+	}
  	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String s = "Java is easy";
@@ -400,9 +419,10 @@ public class Strings {
 //		System.out.println(descendingOrderString("azuma"));
 //		System.out.println(occuranceOfkeyInString("azuma", 'u'));
 //		System.out.println(occuranceOfkeyInString("azuma", 'k'));
-		System.out.println(isStringPanagram("my name is tanishq"));
-		System.out.println(removeDuplicateUsingStringBuildMethod("Java is easy"));
-		System.out.println(printingMissingVowels("Am Indian"));
+//		System.out.println(isStringPanagram("my name is tanishq"));
+//		System.out.println(removeDuplicateUsingStringBuildMethod("Java is easy"));
+//		System.out.println(printingMissingVowels("Am Indian"));
+		printPermutation("abc" , 0 , 2);
 	}
 
 }
