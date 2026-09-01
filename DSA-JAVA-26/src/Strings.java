@@ -459,6 +459,32 @@ public class Strings {
 		}
 		System.out.println(biggestPalindrome);
 	}
+	public static String removingDuplicatesFromStringUsingSplit(String s) {
+		String[] str= s.split(" ");
+		String res= "";
+		for(int i = 0 ; i < str.length ; i++) {
+			if(!res.contains(str[i])) {
+				res += str[i] + " ";
+			}
+		}
+		return res.trim();
+	}
+	public static void printingTheOcuurenceOfWordsUsingSplit(String s) {
+		String [] str = s.split(" ");
+		for(int i = 0 ; i  < str.length ; i++) {
+			int count = 1; 
+			if(str[i] == " ")continue;
+			for(int j = i +1 ; j < str.length ; j++) {
+				if(str[i].equals(str[j])) {
+					count ++;
+					str[j] =" ";
+				}
+			}
+			System.out.println(str[i]x +"=" + count);
+		}
+	
+		
+	}
  	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String s = "Java is easy";
@@ -490,7 +516,9 @@ public class Strings {
 //		System.out.println(reverseTheWordsPlacementUsingSplit("java is easy"));
 //		System.out.println(reverseTheWordsOfAGivenStringUsingSplit("java is easy"));
 //		printPalindormsInStringUsingSplit("madam is from malayalam");
-		printBiggestPalindromInStringUsingSplit("madam knows only malayalam");
+//		printBiggestPalindromInStringUsingSplit("madam knows only malayalam");
+		printingTheOcuurenceOfWordsUsingSplit("java is very very easy java");
+		System.out.println(removingDuplicatesFromStringUsingSplit("Happy Happy Happyness Happy birthday to you"));
 	}
 
 }
