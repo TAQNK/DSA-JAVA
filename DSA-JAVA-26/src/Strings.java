@@ -73,7 +73,7 @@ public class Strings {
 	public static String reverseStr(String s) {
 		int i = 0 , j =0 ;
 		String rev = "";
-		while( j <= s.length() -1) {
+		while( i <= s.length() -1) {
 			while(j <= s.length() -1 && s.charAt(j) != ' ') {
 				j++;
 			}
@@ -480,11 +480,31 @@ public class Strings {
 					str[j] =" ";
 				}
 			}
-			System.out.println(str[i]x +"=" + count);
+			System.out.println(str[i] +"=" + count);
 		}
 	
 		
 	}
+	
+	public static String nonRepeatingWordsInAGivenString(String s) {
+		String[] strArr = s.split(" ");
+		String answer = "";
+		for(int i = 0 ; i < strArr.length ; i++) {
+			int count = 1;
+			if(answer.contains("\u0000"))continue;
+			for(int j = i + 1; j < strArr.length ; j++) {
+				if(strArr[i].equals(strArr[j])) {
+					count ++;
+					strArr[j] = "\u0000";
+				}
+			}
+			if(count == 1)
+				answer += strArr[i] +" ";
+		}
+		return answer;
+	}
+		
+	
  	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String s = "Java is easy";
@@ -519,6 +539,7 @@ public class Strings {
 //		printBiggestPalindromInStringUsingSplit("madam knows only malayalam");
 		printingTheOcuurenceOfWordsUsingSplit("java is very very easy java");
 		System.out.println(removingDuplicatesFromStringUsingSplit("Happy Happy Happyness Happy birthday to you"));
+		System.out.println(nonRepeatingWordsInAGivenString("java is very very easy java java"));
 	}
 
 }
