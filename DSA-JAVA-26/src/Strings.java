@@ -504,7 +504,90 @@ public class Strings {
 		return answer;
 	}
 		
+	// printing is the two given strings are anagram or not having the same char
+	public static boolean isAnagram(String s1 , String s2) {
+		if(s1.length() != s2.length())return false;
+		if(s1.length() == 0 && s2.length() == 0) return true;
+		char ch = s1.charAt(0);
+		return isAnagram(s1.replace(ch +"", "")  , s2.replace(ch +"", ""));
+	}
+	//printing the occurence of each letter 
+	public static void printOccurrenceOfEachLetterInStringUsingBuiltInMethods(String s) {
+		String s1 = s;
+		String s2 = "";
+		while(s1.length() != 0) {
+			char ch= s1.charAt(0);
+			s2 = s1.replace(ch +"", "");
+			int count = s1.length() - s2.length();
+			System.out.println(ch +" : "+count);
+			s1 = s2;
+		}
+	}
 	
+	// printing the max occurred char in string 
+	public static void printingMaxOccurredCharInString(String s) {
+		int max = 0 ;
+		char  maxChar = ' ';
+		String s2 = "";
+		while(s.length() > 0) {
+			char ch = s.charAt(0);
+			s2 = s.replace(ch+"" , "");
+			int count = s.length() - s2.length();
+			if(count > max) {max = count ; maxChar = ch;}
+			s = s2 ;
+		}
+		System.out.println(maxChar+" = "+max);
+		
+	}
+	public static void printingMinOccurredCharInString(String s) {
+		int min = s.length() ;
+		char  minChar = ' ';
+		String s2 = "";
+		while(s.length() > 0) {
+			char ch = s.charAt(0);
+			s2 = s.replace(ch+"" , "");
+			int count = s.length() - s2.length();
+			if(count < min) {min = count ;minChar = ch;}
+			s = s2 ;
+		}
+		System.out.println(minChar+" = "+min);
+		
+	}
+	
+	//input - Ram12nak53um3 output - 67
+	public static int  getSumOfNumbers(String s) {
+		int sum = 0 ;
+		//i found the first integer so i am skipping all char other than 0 -9
+		for(int i = 0 ; i < s.length(); i++)
+		{	String num = "";
+			while(i < s.length() && !(s.charAt(i) >= '0' && s.charAt(i) <= '9')) {
+				i++;
+			}
+		// now i have to find the length of number
+			int j = i + 1;
+			while( j  < s.length() && (s.charAt(j) >= '0' && s.charAt(j) <= '9')){
+				j++;
+			}
+			int k = i ;
+			while(k < j) {
+				num+= s.charAt(k);
+				k++;
+			}
+			int l = num.length() -1 ;
+			int place = 1;
+			System.out.println("num"+num +" , sum:"+sum);
+			while(l  >= 0) {
+				int digit = (num.charAt(l) -'0') * place;
+				place *=10;
+				sum += digit;
+				l--;
+			}
+			i = j;
+		}
+		// number lies in i -> j -1
+		// now form this number and add it to sum
+		return sum ;
+	}
  	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String s = "Java is easy";
@@ -537,9 +620,14 @@ public class Strings {
 //		System.out.println(reverseTheWordsOfAGivenStringUsingSplit("java is easy"));
 //		printPalindormsInStringUsingSplit("madam is from malayalam");
 //		printBiggestPalindromInStringUsingSplit("madam knows only malayalam");
-		printingTheOcuurenceOfWordsUsingSplit("java is very very easy java");
-		System.out.println(removingDuplicatesFromStringUsingSplit("Happy Happy Happyness Happy birthday to you"));
-		System.out.println(nonRepeatingWordsInAGivenString("java is very very easy java java"));
+//		printingTheOcuurenceOfWordsUsingSplit("java is very very easy java");
+//		System.out.println(removingDuplicatesFromStringUsingSplit("Happy Happy Happyness Happy birthday to you"));
+//		System.out.println(nonRepeatingWordsInAGivenString("java is very very easy java java"));
+//		System.out.println(isAnagram("keep" , "peek"));
+		printOccurrenceOfEachLetterInStringUsingBuiltInMethods("java is easy");
+		printingMinOccurredCharInString("java is very very easy");
+		printingMaxOccurredCharInString("jaavvaaiiaas");
+		System.out.println(getSumOfNumbers("jab12jaba12jaba12"));
 	}
 
 }
