@@ -588,6 +588,97 @@ public class Strings {
 		// now form this number and add it to sum
 		return sum ;
 	}
+	
+	// find all substrings
+	public static void printSubstrings(String s) {
+		for(int i = 0 ; i <s.length() ; i++) {
+			for(int j = i + 2 ; j < s.length() ; j++) {
+				System.out.println(s.substring(i , j));
+			}
+		}	
+	}
+	
+	//find all the palindoromes exisiting in malayalam
+	public static void findPalindromes(String s) {
+		for(int i = 0 ; i < s.length() ;  i ++) {
+			for(int j = i + 2; j < s.length() ; j++) {
+				if(isPalindrome1(s.substring(i , j))) {
+					System.out.println(s.substring(i , j));
+				}
+			}
+		}
+	}
+	//helper function 
+	public static boolean isPalindrome1(String s) {
+		int i = 0 , j = s.length() - 1 ;
+		while( i < j ) {
+			if(s.charAt(i) != s.charAt(j)) {
+				return false;
+			}
+			i++;
+			j--;
+		}
+		return true;
+	}
+	
+	// finding the max possible palindrme in malayalam
+	public static void maxPalindrome(String s) {
+		String maxPalindrome = "";
+		for(int i = 0 ; i < s.length() ; i++) {
+			for(int j = i + 2 ; j < s.length() ; j++) {
+				String str = s.substring(i ,j);
+				if(isPalindrome1(str)) {
+					if(maxPalindrome.length() < str.length()) {
+						maxPalindrome = str;
+					}
+				}
+			}
+		}
+		System.out.println("Max Palindrome string possible in "+ s +" is "+maxPalindrome+" .");
+	}
+	// minimun palindrome
+	public static void minPalindrome(String s) {
+		String minPalindrome = s;
+		for(int i = 0 ; i < s.length() ; i++) {
+			for(int j = i + 2 ; j < s.length() ; j++) {
+				String str = s.substring(i ,j);
+				if(isPalindrome1(str)) {
+					if(minPalindrome.length() > str.length()) {
+						minPalindrome = str;
+					}
+				}
+			}
+		}
+		System.out.println("Min Palindrome string possible in "+ s +" is "+minPalindrome+" .");
+	}
+	//swapping two strings without using third variable
+	public static void swap_2V(String s1 , String s2) {
+		
+		System.out.println("String 1 = "+s1);
+		System.out.println("String 2 = "+s2);
+		System.out.println("After Swap ");
+		s1 = s1 + s2;
+		s2 = s1.substring(0 , s1.length() - s2.length());
+		s1 = s1.substring(s2.length());
+		System.out.println("String 1 = "+s1);
+		System.out.println("String 2 = "+s2);
+	}
+	// input - "banana" output - b- 0 , a - 1 ,3,5  , n - 2 , 4 
+	public static void printIndexValueOfOccurences(String s) {
+		String temp = "";
+		for(int i = 0 ; i < s.length() ; i++) {
+			if(temp.contains(s.charAt(i) +""))continue;
+			
+			System.out.print(s.charAt(i) + " : " +i);
+			for(int j = i + 1 ; j  < s.length() ; j++) {
+				if(s.charAt(i) == s.charAt(j)) {
+					temp += s.charAt(i);
+					System.out.print(", "+j);
+				}
+			}
+			System.out.println();
+		}
+	}
  	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String s = "Java is easy";
@@ -624,10 +715,16 @@ public class Strings {
 //		System.out.println(removingDuplicatesFromStringUsingSplit("Happy Happy Happyness Happy birthday to you"));
 //		System.out.println(nonRepeatingWordsInAGivenString("java is very very easy java java"));
 //		System.out.println(isAnagram("keep" , "peek"));
-		printOccurrenceOfEachLetterInStringUsingBuiltInMethods("java is easy");
-		printingMinOccurredCharInString("java is very very easy");
-		printingMaxOccurredCharInString("jaavvaaiiaas");
-		System.out.println(getSumOfNumbers("jab12jaba12jaba12"));
+//		printOccurrenceOfEachLetterInStringUsingBuiltInMethods("java is easy");
+//		printingMinOccurredCharInString("java is very very easy");
+//		printingMaxOccurredCharInString("jaavvaaiiaas");
+//		System.out.println(getSumOfNumbers("jab12jaba12jaba12"));
+//		printSubstrings("malaylam");
+		findPalindromes("malayalam");
+		minPalindrome("malayalam");
+		maxPalindrome("malayalam");
+		swap_2V("tan","pal");
+		printIndexValueOfOccurences("banana+");
 	}
 
 }
