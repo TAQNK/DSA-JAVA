@@ -720,12 +720,12 @@ public class Strings {
 //		printingMaxOccurredCharInString("jaavvaaiiaas");
 //		System.out.println(getSumOfNumbers("jab12jaba12jaba12"));
 //		printSubstrings("malaylam");
-		findPalindromes("malayalam");
-		minPalindrome("malayalam");
-		maxPalindrome("malayalam");
-		swap_2V("tan","pal");
-		printIndexValueOfOccurences("banana+");
-	}
+//		findPalindromes("malayalam");
+//		minPalindrome("malayalam");
+//		maxPalindrome("malayalam");
+//		swap_2V("tan","pal");
+//		printIndexValueOfOccurences("banana+");
+		}
 
 }
 
