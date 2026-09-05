@@ -20,16 +20,17 @@
 //Output: 6
 //Explanation: The last word is "joyboy" with length 6.
 public class lengthOfTheLastWord {
-	 public static int lengthOfLastWord(String s) {
-	        for(int i = s.length() - 1; i >=0 ; i--){
-	            if(s.charAt(i) == ' ')continue;
-	            int j = i - 1;
-	            while( j >= 0 && s.charAt(j) != ' ')j--;
-	            return i-j;
-	            
+	 
+	 
+	 public static int lengthOfLastWord1(String s) {
+	        s = s.trim(); // this help alot
+	        int i = 0;
+	        for(i = s.length() -1 ; i >= 0 ; i--){
+	            if(s.charAt(i)== ' '){
+	                break;
+	            }
 	        }
-
-	        return -1;
+	        return s.length()-1-i;
 	    }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
