@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class Strings {
 	public static int countNumberOfWordsInAString(String s) {
@@ -679,6 +680,92 @@ public class Strings {
 			System.out.println();
 		}
 	}
+	
+	// removing duplicates form the array - 2pointer approach
+	public static void removeDuplicates(int[] nums) {
+		for(int i = 0 ; i < nums.length ; i++) {
+			boolean flag = true;
+			for(int j  = 0 ; j < i ; j++) {
+				if(nums[i] == nums[j]) {
+					flag = false;
+					break;
+				}
+			}
+			if(flag)System.out.print(nums[i] + " ");
+		}
+		System.out.println(); 
+	}
+	// now the same thing of removing duplicates but return the result 
+	public static int[] removeDuplicates1(int[] nums) {
+		int [] res  ;
+		String s ="";
+		for(int i = 0 ; i < nums.length ; i++) {
+			boolean flag = true;
+			for(int j  = 0 ; j < i ; j++) {
+				if(nums[i] == nums[j]) {
+					flag = false;
+					break;
+				}
+			}
+			if(flag) {
+				s += digitToString(nums[i])+" ";
+			}
+		}
+		
+		String  numStr[] =  s.split(" ") ;
+		
+		res = new int[numStr.length];
+		for(int i = 0 ; i < res.length ; i++) {
+			res[i] = Integer.parseInt(numStr[i]);
+		}
+		return res;
+	}
+	private static String digitToString(int i) {
+		// TODO Auto-generated method stub
+		String res = "";
+		while(i != 0) {
+			res  = (char)(i%10 + '0') + res;
+			i /= 10;
+		}
+		return res;
+	}
+
+	public static int[] sumOf2UnqualArrays(int[] a, int[] b) {
+		int minLen = a.length < b.length ? a.length : b.length;
+		for(int i = 0 ; i < minLen ; i++) {
+			if(a.length < b.length)a[i] += b[i];
+			else b[i] += a[i];
+		}
+		return a.length < b.length ? b : a;
+	}
+	public static int maxElementInArray(int[] arr) {
+		int max = 0;
+		for(int i : arr) {
+			if(max < i)max = i;
+		}
+		return max;
+	}
+	public static int secondMaxElementInArray(int[] arr) {
+		int max = Integer.MIN_VALUE;
+		int secondMax = Integer.MIN_VALUE;
+		for(int element : arr) {
+			if(element > max) {
+				secondMax = max;
+				max = element;
+			}
+			else if(element > secondMax && max > element)
+				secondMax = element;
+		}
+		return secondMax;
+	}
+	public static int minElementInArray(int [] arr) {
+		int min = Integer.MAX_VALUE;
+		for(int e : arr) {
+			if(e < min)min = e;
+		}
+		return min;
+	}
+	
  	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String s = "Java is easy";
@@ -725,6 +812,8 @@ public class Strings {
 //		maxPalindrome("malayalam");
 //		swap_2V("tan","pal");
 //		printIndexValueOfOccurences("banana+");
+		removeDuplicates(new int[]{1,2,1,2,34,56,633,24,5});
+		System.out.println(Arrays.toString(removeDuplicates1(new int[]{1,2,1,24,5})));
 		}
 
 }
