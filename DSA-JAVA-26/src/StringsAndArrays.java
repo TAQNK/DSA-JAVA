@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Strings {
+public class StringsAndArrays {
 	public static int countNumberOfWordsInAString(String s) {
 //		2 pointer approach
 //		int count = 0 ;
@@ -765,7 +765,28 @@ public class Strings {
 		}
 		return min;
 	}
+	public static int secondMinElement(int[] arr) {
+		int min = Integer.MAX_VALUE;
+		int secondMin = Integer.MAX_VALUE;
+		for(int i = 0 ; i < arr.length ; i++) {
+			if(min > arr[i]) {
+				secondMin = min;
+				min = arr[i];
+			}else if (secondMin < arr[i] && arr[i] > min) {
+				secondMin = arr[i];
+			}
+		
+		}
+		return secondMin;
+		}
 	
+	// linearSearch
+	public static void int LinearSearch(int [] arr , int key) {
+		for(int i = 0 ; i < arr.length ; i++) {
+			if(arr[i] == key)return i;
+		}
+		return -1;
+	}
  	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String s = "Java is easy";
