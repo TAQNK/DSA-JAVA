@@ -25,25 +25,58 @@
 import java.util.HashMap;
 import java.util.Map;
 public class SortCharactersByFrequency241 {
-	public static void frequencySort1(String s) {
-		HashMap<Character , Integer> map = new HashMap<>();
-		for(int i = 0 ; i < s.length() ; i++) {
-			if(map.containsKey(s.charAt(i)))continue;
-			
-			int count = 1;
-			for(int j = i + 1; j < s.length() ; j++) {
-				if(s.charAt(i) == s.charAt(j))count++;
-			}
-			map.put(s.charAt(i), count);
-		}
+	public static String frequencySort1(String s) {
+		
+
+		    HashMap<Character, Integer> map = new HashMap<>();
+
+		    // 1. Create character -> frequency map
+		    for (int i = 0; i < s.length(); i++) {
+
+		        if (map.containsKey(s.charAt(i)))
+		            continue;
+
+		        int count = 1;
+
+		        for (int j = i + 1; j < s.length(); j++) {
+
+		            if (s.charAt(i) == s.charAt(j))
+		                count++;
+		        }
+
+		        map.put(s.charAt(i), count);
+		    }
+
+		    String res = "";
+
+		    // 2. Keep finding the character with maximum frequency
+		    while (!map.isEmpty()) {
+
+		        Map.Entry<Character, Integer> max = null;
+
+		        for (Map.Entry<Character, Integer> e : map.entrySet()) {
+
+		            // Ignore characters whose frequency has become 0
+		            if (e.getValue() == 0)
+		                continue;
+
+		            if (max == null || e.getValue() > max.getValue()) {
+		                max = e;
+		            }
+		        }
+
+		        // 3. Add the maximum-frequency character
+		        for (int i = 0; i < max.getValue(); i++) {
+		            res += max.getKey();
+		        }
+
+		        // 4. Remove it so it isn't selected again
+		        map.remove(max.getKey());
+		    }
+
+		    return res;
 		
 		
-		String res ="";
-		// now i will traverse  the array find the max counted char and will add that to
-		// res string while also dedcersing the count and stop when count = 0 till then loop again 
-		for(Map.Entry<Character, Integer> e : map.entrySet()) {
-			
-		}
 		
 	}
 	 public static  String frequencySort(String s) {
@@ -72,7 +105,7 @@ public class SortCharactersByFrequency241 {
 	    }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		frequencySort1("tree");
+		System.out.println(frequencySort1("Aabb"));
 
 
 }
