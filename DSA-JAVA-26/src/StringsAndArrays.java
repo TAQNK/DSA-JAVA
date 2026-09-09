@@ -781,15 +781,65 @@ public class StringsAndArrays {
 		}
 	
 	// linearSearch
-	public static void int LinearSearch(int [] arr , int key) {
+	public static  int LinearSearch(int [] arr , int key) {
 		for(int i = 0 ; i < arr.length ; i++) {
 			if(arr[i] == key)return i;
 		}
 		return -1;
 	}
+	
+	public static int BinarySearch(int[] a , int dhudhMughea) {
+		int i = 0 , j = a.length - 1;
+		
+		while(i <= j) {
+			
+			int mid = (i + j)/2;
+			
+			if(a[mid] == dhudhMughea)
+				return mid;
+			
+			else if(a[mid] < dhudhMughea) {
+				
+				i = mid + 1;
+				
+			}else {
+				
+				j = mid - 1;
+				
+			}
+		}
+		return -1;
+	}
+	public static int BinarySearchRecursion(int []a , int st , int end , int dhudhMughea) {
+		if(st > end)return -1;
+		int mid = ( st + end )/2;
+		
+		if(a[mid] == dhudhMughea)
+			return mid;
+		
+		else if(a[mid] > dhudhMughea)
+			return BinarySearchRecursion(a,st , mid - 1 , dhudhMughea);
+		
+		return BinarySearchRecursion(a, mid + 1 , end, dhudhMughea);
+	}
+	
+	public static int[] BubbleSort(int[] a) {
+		for(int i = a.length - 1 ; i > 0 ; i--) {
+			for(int j = 0 ; j < i ; j++) {
+				
+				if(a[j] > a[j+1]) {
+					int temp = a[j];
+					a[j] = a[j+1];
+					a[j+1] = temp;
+				}
+			}
+		}
+		return a;
+	}
+	
  	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String s = "Java is easy";
+
+//		String s = "Java is easy";
 //		System.out.println(reverseSyntax(s));
 //		System.out.println(reverseStr(s));
 //		String s = "  Ja  VVa iis easuu  "; //Jav iseiu
@@ -833,9 +883,15 @@ public class StringsAndArrays {
 //		maxPalindrome("malayalam");
 //		swap_2V("tan","pal");
 //		printIndexValueOfOccurences("banana+");
-		removeDuplicates(new int[]{1,2,1,2,34,56,633,24,5});
-		System.out.println(Arrays.toString(removeDuplicates1(new int[]{1,2,1,24,5})));
-		}
+//		removeDuplicates(new int[]{1,2,1,2,34,56,633,24,5});
+//		System.out.println(Arrays.toString(removeDuplicates1(new int[]{1,2,1,24,5})));
+
+		System.out.println(BinarySearch(new int[] {1,2,3,4,54} , 4));
+		System.out.println(BinarySearchRecursion(new int[] {1,2,3,45,47} , 0 , 4 , 45));
+		System.out.println(Arrays.toString(BubbleSort(new int[] {1,34,552,12,4,5})));
+		
+ 	}
+		
 
 }
 
