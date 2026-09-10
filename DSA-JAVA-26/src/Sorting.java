@@ -56,14 +56,68 @@ public class Sorting {
 		}
 		return a;
 	}
+	
+	public static void MergeSort(int[] arr , int low , int high) {
+		if (low >= high)return ; // only single element left nothing is there to divide 
+		
+		int mid = (low + high) / 2 ;
+		// dividing the array into a bigger and smaller or two equal portions
+		MergeSort( arr , low , mid );// left half portion
+		MergeSort( arr , mid + 1 , high);
+		// after division is completed i have to merge the sorted arrays
+		Merge( arr , low , mid , high);
+	}
+	private static void Merge(int[] arr, int low, int mid, int high) {
+		
+		// so i have two arrays 
+		// Left array (low , mid) and Right array (mid +1 , high)
+		// start a pointer in left and a pointer in right 
+		int left = low , right = mid + 1;
+		int[] temp = new int[high - low + 1];
+		int i =0 ;
+		
+		while(left <= mid && right <= high) {
+			
+			if(arr[left] <= arr[right]) {
+				temp[i ++] = arr[left ++];
+			}
+			else {
+				temp[i ++] = arr[right ++];
+			}
+			
+		}
+		
+		// element left in any of the array has to be added 
+		while(left <= mid) {
+			
+			temp[i ++] = arr[left ++];
+			
+		}
+		while(right <= high) {
+			
+			temp[i ++] = arr[right ++];
+			
+		}
+		
+		// Transferring the sorted elements in the original array
+		for(int j = low ; j <= high ; j++) {
+			arr[j] = temp[j - low];
+		}
+		
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-
+int [] arr = new int[] {5,4,3,3,21,3,5,6,7,5,21};
 
 System.out.println(Arrays.toString(selectionSort(new int[]{3,13,45,62,3,5,6})));
 System.out.println(Arrays.toString(bubbleSort(new int[]{3,13,45,62,3,5,6})));
 System.out.println(Arrays.toString(insertionSort(new int[]{3,13,45,62,3,5,6})));
+
+MergeSort(arr , 0 , arr.length - 1);
+System.out.println(Arrays.toString(arr));
+
 	}
 
 }
