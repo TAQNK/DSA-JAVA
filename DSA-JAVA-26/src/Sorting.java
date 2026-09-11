@@ -57,6 +57,7 @@ public class Sorting {
 		return a;
 	}
 	
+	
 	public static void MergeSort(int[] arr , int low , int high) {
 		if (low >= high)return ; // only single element left nothing is there to divide 
 		
@@ -106,16 +107,58 @@ public class Sorting {
 		
 	}
 
+	
+	// quick sort
+	public static void QuickSort(int[] a , int low , int high) {
+		
+		if(low < high) {
+			int partitionIndex = partitionFunction(a , low , high);
+			QuickSort(a , low , partitionIndex - 1);
+			QuickSort(a , partitionIndex + 1 , high);
+		}
+		
+		
+	}
+	private static int partitionFunction(int[] a, int low, int high) {
+		
+		int pivot = low ; 
+		int i = low + 1;
+		int j = high;
+		
+		while(i <= j) {
+			while(i <= high && a[i] <= a[pivot]){
+				i++;
+			}
+			
+			while(j > low && a[j] > a[pivot]) {
+				j--;
+			}
+			
+			if(i < j)swap(a , i , j);
+		}
+		
+		swap(a, pivot , j);
+		return j;
+	}
+
+	private static void swap(int[] a, int i, int j) {
+		
+		int temp = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+		
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-int [] arr = new int[] {5,4,3,3,21,3,5,6,7,5,21};
+int [] arr = new int[] {7,5,4,3,1,2,9,4,5,12,12,6};
 
 System.out.println(Arrays.toString(selectionSort(new int[]{3,13,45,62,3,5,6})));
 System.out.println(Arrays.toString(bubbleSort(new int[]{3,13,45,62,3,5,6})));
 System.out.println(Arrays.toString(insertionSort(new int[]{3,13,45,62,3,5,6})));
 
-MergeSort(arr , 0 , arr.length - 1);
+QuickSort(arr , 0 , arr.length - 1);
 System.out.println(Arrays.toString(arr));
 
 	}
