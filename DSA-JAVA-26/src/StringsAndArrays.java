@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class StringsAndArrays {
@@ -836,8 +837,151 @@ public class StringsAndArrays {
 		}
 		return a;
 	}
+	public static int[] SelectionSort(int []a ) {
+		// find the min and place them at start
+		for(int i = 0 ; i < a.length - 1 ; i++) {
+			
+			int min = i ;
+			
+			for(int j = i + 1 ; j < a.length ; j++) {
+				
+				if(a[j] < a[min])min = j;
+				
+			}
+			
+			int temp = a[i];
+			a[i] = a[min] ;
+			a[min] = temp;
+			
+		}
+		return a;
+	}
+	public static int[] InsertionSort(int []a ) {
+		// find the actual positon of element elements on right of it should be big and on left small
+		for(int i = 1 ; i < a.length ; i++) {
+			
+			int j = i ;
+			
+			while( j > 0 ) {
+				
+				if(a[j-1] > a[j]) {
+					
+					int temp = a[j];
+					a[j] = a[j - 1];
+					a[j - 1] = temp;
+					
+				}
+				j--;
+			}
+		}
+		return a;
+	}
 	
- 	public static void main(String[] args) {
+	// merge sort
+	public static void MergeSort(int a[] , int low , int high) {
+		if(low >= high)return;
+		
+		int mid = (low + high) / 2;
+		MergeSort(a , low , mid);
+		MergeSort(a , mid + 1 , high);
+		Merge(a , low , mid , high);
+	}
+	
+	
+ 	private static void Merge(int[] a, int low, int mid, int high) {
+		int temp[] = new int[high - low + 1];
+		int k = 0;
+		int left = low , right = high ;
+		while(left <= mid && right <= high) {
+			
+			while(a[left] <= a[right]) {
+	
+				temp[k++] = a[left++];
+				
+			}
+			while(a[left] > a[right]) {
+				
+				temp[k++] = a[right++];
+				
+			}
+			
+		}
+		// remaining elements in both arrays 
+		while(left <= mid)temp[k++] = a[left++];
+		while(right <= high)temp[k++] = a[right++];
+		
+		//copy elements back to original array
+		for(int l = low ; l <= high ; l++) {
+		
+			a[l] = temp[l-low];
+			
+		}
+		
+	}
+ 	
+ 	// quick sort
+ 	public static void QuickSort(int[]a , int low , int high) {
+ 		int pivot = (low + high )/2;
+ 		if(low > high)return;
+ 		int i = low , j = high;
+ 		if(i <= j) {
+ 			while(a[i] < a[pivot]) {
+ 				i ++;
+ 			}
+ 			while(a[j] > a[pivot]) {
+ 				j --;
+ 			}
+ 		}
+ 		if( i <= j) {
+ 			int temp = a[i];
+ 			a[i] = a[j];
+ 			a[j] = temp;
+ 			i++;
+ 			j--;
+ 		}
+ 		QuickSort(a, low , j);
+ 		QuickSort(a, i , high);
+ 	}
+
+ 	// 2d array 
+ 	public static int secondMaxIn2DArray(int[][] a) {
+ 		
+ 		int max = Integer.MIN_VALUE , secondMax = Integer.MIN_VALUE;
+ 		
+ 		for(int i = 0 ; i < a.length ; i++) {
+ 			
+ 			for(int j = 0 ; j < a[i].length ; j++) {
+ 				
+ 				if(a[i][j] > max) {
+ 					secondMax = max ;
+ 					max = a[i][j];
+ 				}else if(a[i][j] > secondMax) {
+ 					secondMax = a[i][j];
+ 				}
+ 			}
+ 		}
+ 		return secondMax ;
+ 	
+ 	}
+ 	
+ 	
+ 	public static int sumOfDiagonalElements(int[][] a){
+ 		
+ 		int sum = 0 ;
+ 		for(int i =0 ; i < a.length ; i++) {
+ 			
+ 			for(int j = 0 ; j < a[i].length; j++) {
+ 				
+ 				if(i == j || i+j == a.length - 1 ) {
+ 					sum += a[i][j];
+ 				}
+ 			}
+ 		} 	
+ 		
+ 		return sum;
+ 				
+ 	}
+	public static void main(String[] args) {
 
 //		String s = "Java is easy";
 //		System.out.println(reverseSyntax(s));
@@ -885,10 +1029,25 @@ public class StringsAndArrays {
 //		printIndexValueOfOccurences("banana+");
 //		removeDuplicates(new int[]{1,2,1,2,34,56,633,24,5});
 //		System.out.println(Arrays.toString(removeDuplicates1(new int[]{1,2,1,24,5})));
-
-		System.out.println(BinarySearch(new int[] {1,2,3,4,54} , 4));
-		System.out.println(BinarySearchRecursion(new int[] {1,2,3,45,47} , 0 , 4 , 45));
-		System.out.println(Arrays.toString(BubbleSort(new int[] {1,34,552,12,4,5})));
+ 		
+//		System.out.println(BinarySearch(new int[] {1,2,3,4,54} , 4));
+//		System.out.println(BinarySearchRecursion(new int[] {1,2,3,45,47} , 0 , 4 , 45));
+//		System.out.println(Arrays.toString(BubbleSort(new int[] {1,34,552,12,4,5})));
+//		System.out.println(Arrays.toString(SelectionSort(new int[] {1,34,552,12,4,5})));
+//		System.out.println(Arrays.toString(InsertionSort(new int[] {1,34,552,12,4,5})));
+//		int[]a = {5,4,3,2,1};
+//		QuickSort(a , 0 , a.length - 1);
+//		System.out.println(Arrays.toString(a));
+		
+		int[][] a1 = {{1,2,3} , {4,5,6} , {7,8,9}};
+		for(int[] a : a1) {
+			for(int n : a) {
+				System.out.print(n+" ");
+			}
+			System.out.println("\n");
+		}
+		System.out.println("Second Max:" + secondMaxIn2DArray(a1));
+		System.out.println("Sum of diagonal elements:" + sumOfDiagonalElements(a1));
 		
  	}
 		
