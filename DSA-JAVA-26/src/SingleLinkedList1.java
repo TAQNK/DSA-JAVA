@@ -92,17 +92,45 @@ public class SingleLinkedList1 {
 		
 		
 	}
+	
+	// reversing a linked list
+	public  void ReverseIterate() {
+		// 3 pointer approach 
+		// if list contains 1 or no elements 
+		if(head == null || head.next == null) return;
+		Node prevNode = head ;
+		Node  currNode = head.next;
+		while(currNode != null) {
+			Node nextNode = currNode.next;
+			currNode.next = prevNode ;
+			//update the pointers
+			prevNode = currNode ;
+			currNode = nextNode ;
+		}
+		head.next = null;
+		head = prevNode;
+	}
+	
+	// using recursion
+	public Node ReverseRecursion(Node head) {
+		// consider stack having different linked list and will be returning a already reversed list
+		if(head == null || head.next == null)return head;
+		Node nextHead = ReverseRecursion(head.next);
+		head.next.next = head;
+		head.next = null;
+		return nextHead;
+		
+	}
 	public static void main(String[] args) {
 		SingleLinkedList1 List = new SingleLinkedList1();
 		// adding elements
-		List.add(10);
-		List.add(10);
+		List.add(60);
+		List.add(40);
 		List.add(20);
 		List.add(10);
-		List.add(10);
+		List.add(30);
 		List.print();
 		// removing element
-		List.remove();
 		List.remove();
 		List.remove();
 		List.print();
@@ -111,7 +139,10 @@ public class SingleLinkedList1 {
 		// searching a object
 		List.search(20);
 		List.search(10);
-		
+		List.ReverseIterate();
+		List.print();
+		List.head = List.ReverseRecursion(List.head);
+		List.print();
 		
 		
 		
