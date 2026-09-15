@@ -981,6 +981,67 @@ public class StringsAndArrays {
  		return sum;
  				
  	}
+ 	
+ 	// 2d arrays 
+ 	// spiral matrix 
+ 	// [1,2,3,4,5]
+ 	// [16,17,18,19,6]
+ 	// [15,24,25,20,7]
+ 	// [14,23,22,21,8]	
+ 	// [13,12,11,10,9]
+ 	
+ 	public static void SpiralMatrix(int[][] a) {
+ 		int row = 0;
+ 		int col = -1;
+ 		char dir = 'R';
+ 		
+ 		for(int i = 1 ; i <= a.length*a.length ; i++) {
+ 			
+ 			switch(dir) {
+ 			
+ 				case 'R':{
+ 					col++;
+ 					a[row][col] = i;
+ 					if(col == a.length -1 || a[row][col+1] !=0)
+ 						dir = 'D';
+ 				}
+ 				break;
+ 				case 'D':{
+ 					row++;
+ 					a[row][col] = i;
+ 					if(row == a.length -1 || a[row+1][col] !=0)
+ 						dir = 'L';
+ 				}
+ 				break;
+ 				case 'L':{
+ 					col--;
+ 					a[row][col] = i;
+ 					if(col == 0 || a[row][col-1] !=0)
+ 						dir = 'U';
+ 				}
+ 				break;
+ 				case 'U':{
+ 					row--;
+ 					a[row][col] = i;
+ 					if(row == 0 || a[row-1][col] !=0)
+ 						dir = 'R';
+ 				}
+ 				break;
+ 			}
+ 		}
+ 		
+ 	}
+ 	
+ 	// transpose matrix
+ 	public static int[][] TransposeMatrix(int[][]a) {
+ 		int [][]b = new int[a.length][a[0].length];
+ 		for(int  i = 0 ; i < a.length ; i++) {
+ 			for(int j = 0 ; j < a[i].length ; j++) {
+ 				b[i][j] = a[j][i];
+ 			}
+ 		}
+ 		return b;
+ 	}
 	public static void main(String[] args) {
 
 //		String s = "Java is easy";
@@ -1038,17 +1099,31 @@ public class StringsAndArrays {
 //		int[]a = {5,4,3,2,1};
 //		QuickSort(a , 0 , a.length - 1);
 //		System.out.println(Arrays.toString(a));
-		
-		int[][] a1 = {{1,2,3} , {4,5,6} , {7,8,9}};
-		for(int[] a : a1) {
-			for(int n : a) {
-				System.out.print(n+" ");
+//		
+//		int[][] a1 = {{1,2,3} , {4,5,6} , {7,8,9}};
+//		for(int[] a : a1) {
+//			for(int n : a) {
+//				System.out.print(n+" ");
+//			}
+//			System.out.println("\n");
+//		}
+//		System.out.println("Second Max:" + secondMaxIn2DArray(a1));
+//		System.out.println("Sum of diagonal elements:" + sumOfDiagonalElements(a1));
+		int[][] a = new int[5][5];
+		SpiralMatrix(a);
+		for(int []i : a) {
+			for(int num :i) {
+				System.out.print(num +" ");
 			}
-			System.out.println("\n");
+			System.out.println();
 		}
-		System.out.println("Second Max:" + secondMaxIn2DArray(a1));
-		System.out.println("Sum of diagonal elements:" + sumOfDiagonalElements(a1));
-		
+		int[][]a1 = {{1,2,3},{4,5,6},{7,8,9}};
+		for(int []n :TransposeMatrix(a1) ) {
+			for(int num : n) {
+				System.out.print(num+" ");
+			}
+			System.out.println();
+		}
  	}
 		
 
