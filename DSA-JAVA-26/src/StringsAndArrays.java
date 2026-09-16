@@ -965,7 +965,7 @@ public class StringsAndArrays {
  	}
  	
  	
- 	public static int sumOfDiagonalElements(int[][] a){
+ 	public static int sumOfDiagonalElements1(int[][] a){
  		
  		int sum = 0 ;
  		for(int i =0 ; i < a.length ; i++) {
@@ -981,6 +981,19 @@ public class StringsAndArrays {
  		return sum;
  				
  	}
+ 	// now using a single loop
+ 	public static int sumOfDiagonalElements2(int[][]a) {
+ 		int sum = 0;
+ 		for(int i = 0 ; i < a.length ; i++ ){
+ 			sum += a[i][i];
+ 			// this only works not the length /2
+ 			if(i != a.length -i-1) {
+ 				sum += a[i][a.length - i - 1];
+ 			}
+ 		}
+ 		return sum;
+ 	}
+ 	
  	
  	// 2d arrays 
  	// spiral matrix 
@@ -1041,6 +1054,48 @@ public class StringsAndArrays {
  			}
  		}
  		return b;
+ 	}
+ 	// pascal triangle 
+ 	// 1 . 
+ 	//11
+ 	//121
+ 	//1331
+ 	//14641
+ 	
+ 	public static int[][] PascalTriangle(int num ) {
+ 		int[][]pascalTriangle = new int[num ][];
+ 		for(int i = 0 ; i < num ; i++) {
+ 			int[]row = new int[i+1];
+ 			row[0]= 1;
+ 			for(int j = 1 ; j <= i ; j++) {
+ 				if( j == i ) {
+ 					row[j] = 1;
+ 				}else {
+ 					row[j] = pascalTriangle[i-1][j] + pascalTriangle[i-1][j-1];
+ 				}
+ 			}
+ 			pascalTriangle[i]= row;
+ 		}
+ 		return pascalTriangle;
+ 	}
+ 	// matrix multiplication
+ 	public static int[][] MatrixMultiplication(int[][]a ,int [][]b){
+ 		
+ 		if(a.length != b.length)return new int[a.length][];
+ 		int [][] c= new int[a.length][a[0].length];
+ 		for(int i = 0 ; i < a.length ; i++) {
+ 			
+ 			for(int j = 0 ;j < a[i].length ; j++) {
+ 				
+ 				for(int k = 0 ; k < a.length ; k++) {
+ 					
+ 					c[i][j] += a[i][k] + b[k][j];
+ 					
+ 				}
+ 			}
+ 		}
+ 		
+ 		return c;
  	}
 	public static void main(String[] args) {
 
@@ -1109,24 +1164,48 @@ public class StringsAndArrays {
 //		}
 //		System.out.println("Second Max:" + secondMaxIn2DArray(a1));
 //		System.out.println("Sum of diagonal elements:" + sumOfDiagonalElements(a1));
-		int[][] a = new int[5][5];
-		SpiralMatrix(a);
-		for(int []i : a) {
-			for(int num :i) {
-				System.out.print(num +" ");
-			}
-			System.out.println();
+//		int[][] a = new int[5][5];
+//		SpiralMatrix(a);
+//		for(int []i : a) {
+//			for(int num :i) {
+//				System.out.print(num +" ");
+//			}
+//			System.out.println();
+//		}
+//		int[][]a1 = {{1,2,3},{4,5,6},{7,8,9}};
+//		for(int []n :TransposeMatrix(a1) ) {
+//			for(int num : n) {
+//				System.out.print(num+" ");
+//			}
+//			System.out.println();
+//		}
+// 	}
+		// sum of diagonals using single for loop
+	int a1[][] = {{1,0,0,1},{0,1,1,0},{0,1,1,0},{1,0,0,1}};
+	for(int []arr : a1) {
+		for(int num : arr) {
+			System.out.print(num);
 		}
-		int[][]a1 = {{1,2,3},{4,5,6},{7,8,9}};
-		for(int []n :TransposeMatrix(a1) ) {
-			for(int num : n) {
-				System.out.print(num+" ");
-			}
-			System.out.println();
+		System.out.println();
+	}
+	System.out.println(sumOfDiagonalElements2(a1));
+	int[][]a  = {{1,2,3},{5,4,7},{4,5,5}};
+	for(int[] arr : MatrixMultiplication(a,a)) {
+		for(int num : arr) {
+			System.out.print(num+" ");
 		}
- 	}
-		
-
+		System.out.println();
+	}
+	
+	int num = 5;
+	for(int[] row : PascalTriangle(num)) {
+		for(int number : row) {
+			System.out.print(number +" ");
+		}
+		System.out.println();
+	}
+	}
+	
 }
 
 //assignment questions 
