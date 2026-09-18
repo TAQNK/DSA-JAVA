@@ -350,7 +350,7 @@ public class StringsAndArrays {
 		
 	}
 	
-	public static String removeDuplicateUsingStringBuildMethod(String s) {
+	public static String removeDuplicateUsingStringBuiltInMethod(String s) {
 		String ans= "";
 		s = s.toLowerCase();
 		for(int i = 0 ; i <s.length() ; i ++) {
@@ -594,7 +594,7 @@ public class StringsAndArrays {
 	// find all substrings
 	public static void printSubstrings(String s) {
 		for(int i = 0 ; i <s.length() ; i++) {
-			for(int j = i + 2 ; j < s.length() ; j++) {
+			for(int j = i + 2 ; j < s.length() +1; j++) {
 				System.out.println(s.substring(i , j));
 			}
 		}	
@@ -672,9 +672,9 @@ public class StringsAndArrays {
 			if(temp.contains(s.charAt(i) +""))continue;
 			
 			System.out.print(s.charAt(i) + " : " +i);
+			temp += s.charAt(i);
 			for(int j = i + 1 ; j  < s.length() ; j++) {
 				if(s.charAt(i) == s.charAt(j)) {
-					temp += s.charAt(i);
 					System.out.print(", "+j);
 				}
 			}
@@ -682,6 +682,8 @@ public class StringsAndArrays {
 		}
 	}
 	
+	
+	// arrays start
 	// removing duplicates form the array - 2pointer approach
 	public static void removeDuplicates(int[] nums) {
 		for(int i = 0 ; i < nums.length ; i++) {
