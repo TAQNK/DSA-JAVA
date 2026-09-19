@@ -134,21 +134,28 @@ public class StringsAndArrays {
 		}
 		return rev;
 	}
+//	 input : java is easy
+//	output : easy is java
 	public static String reverseSyntax(String s) {
-		int i = s.length()-1 ;
-		int j = s.length() - 1;
+		
 		String rev = "";
-		while(i >= 0 ) {
-			while(i >= 0 && s.charAt(i) != ' ') {
-				i-- ;
+		for(int i = s.length() - 1; i >= 0 ; i--) {
+			if(s.charAt(i) == ' ') {
+				rev += s.charAt(i)+"";
+				continue;
 			}
-			int k = i +1 ;
-			while( k <= j) {
-				rev += s.charAt(k++);
+			int j = i -1 ;
+			while(j >= 0 && s.charAt(j) != ' ') {
+				j--;
 			}
-			rev+=' ';
-			i--;
-			j =  i;
+			int k = j+1 ;
+			
+			while( k <= i) {
+				rev += s.charAt(k)+"";
+				k++;
+			}
+			i = j + 1 ;
+			
 		}
 		return rev;
 	}
@@ -349,8 +356,9 @@ public class StringsAndArrays {
 		return true;
 		
 	}
-	
-	public static String removeDuplicateUsingStringBuiltInMethod(String s) {
+	//input  :Java is easy
+	//output :jav isey
+	public static String removeDuplicateUsingContains(String s) {
 		String ans= "";
 		s = s.toLowerCase();
 		for(int i = 0 ; i <s.length() ; i ++) {
@@ -487,8 +495,9 @@ public class StringsAndArrays {
 	
 		
 	}
-	
-	public static String nonRepeatingWordsInAGivenString(String s) {
+	// input : java is very very easy java java
+	// output: is easy 
+	public static String nonRepeatingWordsInAGivenStringUsingSplit(String s) {
 		String[] strArr = s.split(" ");
 		String answer = "";
 		for(int i = 0 ; i < strArr.length ; i++) {
@@ -514,7 +523,18 @@ public class StringsAndArrays {
 		return isAnagram(s1.replace(ch +"", "")  , s2.replace(ch +"", ""));
 	}
 	//printing the occurence of each letter 
-	public static void printOccurrenceOfEachLetterInStringUsingBuiltInMethods(String s) {
+	// input : java is easy
+	// output:
+//	j : 1
+//	a : 3
+//	v : 1
+//	  : 2
+//	i : 1
+//	s : 2
+//	e : 1
+//	y : 1
+
+	public static void printOccurrenceOfEachLetterInStringUsingReplace(String s) {
 		String s1 = s;
 		String s2 = "";
 		while(s1.length() != 0) {
@@ -527,6 +547,8 @@ public class StringsAndArrays {
 	}
 	
 	// printing the max occurred char in string 
+	// input : 
+	// output : 
 	public static void printingMaxOccurredCharInString(String s) {
 		int max = 0 ;
 		char  maxChar = ' ';
@@ -541,6 +563,8 @@ public class StringsAndArrays {
 		System.out.println(maxChar+" = "+max);
 		
 	}
+	// input : "java is very very easy"
+	// output : j = 1
 	public static void printingMinOccurredCharInString(String s) {
 		int min = s.length() ;
 		char  minChar = ' ';
@@ -594,13 +618,19 @@ public class StringsAndArrays {
 	// find all substrings
 	public static void printSubstrings(String s) {
 		for(int i = 0 ; i <s.length() ; i++) {
-			for(int j = i + 2 ; j < s.length() +1; j++) {
+			for(int j = i + 1 ; j < s.length() +1; j++) {
 				System.out.println(s.substring(i , j));
 			}
 		}	
 	}
 	
 	//find all the palindoromes exisiting in malayalam
+	// input : "malayalam" 
+	// output :ala
+	//	alayala
+	//	layal
+	//	aya
+	//	ala 
 	public static void findPalindromes(String s) {
 		for(int i = 0 ; i < s.length() ;  i ++) {
 			for(int j = i + 2; j < s.length() ; j++) {
@@ -624,6 +654,7 @@ public class StringsAndArrays {
 	}
 	
 	// finding the max possible palindrme in malayalam
+	// output : "alayala"
 	public static void maxPalindrome(String s) {
 		String maxPalindrome = "";
 		for(int i = 0 ; i < s.length() ; i++) {
@@ -639,6 +670,7 @@ public class StringsAndArrays {
 		System.out.println("Max Palindrome string possible in "+ s +" is "+maxPalindrome+" .");
 	}
 	// minimun palindrome
+//	 input  : "malayalam" output : "ala"
 	public static void minPalindrome(String s) {
 		String minPalindrome = s;
 		for(int i = 0 ; i < s.length() ; i++) {
@@ -685,6 +717,8 @@ public class StringsAndArrays {
 	
 	// arrays start
 	// removing duplicates form the array - 2pointer approach
+	// input :{1,2,1,2,34,56,633,24,5}  
+	// output:{1 2 34 56 633 24 5 } 
 	public static void removeDuplicates(int[] nums) {
 		for(int i = 0 ; i < nums.length ; i++) {
 			boolean flag = true;
@@ -699,6 +733,7 @@ public class StringsAndArrays {
 		System.out.println(); 
 	}
 	// now the same thing of removing duplicates but return the result 
+	// input : {1,2,1,24,5} output : [1, 2, 24, 5]
 	public static int[] removeDuplicates1(int[] nums) {
 		int [] res  ;
 		String s ="";
@@ -710,7 +745,7 @@ public class StringsAndArrays {
 					break;
 				}
 			}
-			if(flag) {
+			if(flag) { 
 				s += digitToString(nums[i])+" ";
 			}
 		}
@@ -924,7 +959,7 @@ public class StringsAndArrays {
  	// quick sort
  	public static void QuickSort(int[]a , int low , int high) {
  		int pivot = (low + high )/2;
- 		if(low > high)return;
+ 		if(low >= high)return;
  		int i = low , j = high;
  		if(i <= j) {
  			while(a[i] < a[pivot]) {
@@ -983,7 +1018,7 @@ public class StringsAndArrays {
  		return sum;
  				
  	}
- 	// now using a single loop
+ 	// now using a single loop ( recommended )
  	public static int sumOfDiagonalElements2(int[][]a) {
  		int sum = 0;
  		for(int i = 0 ; i < a.length ; i++ ){
@@ -1068,9 +1103,9 @@ public class StringsAndArrays {
  		int[][]pascalTriangle = new int[num ][];
  		for(int i = 0 ; i < num ; i++) {
  			int[]row = new int[i+1];
- 			row[0]= 1;
- 			for(int j = 1 ; j <= i ; j++) {
- 				if( j == i ) {
+ 			
+ 			for(int j = 0 ; j < row.length ; j++) {
+ 				if(j==0 || j == row.length - 1 ) {
  					row[j] = 1;
  				}else {
  					row[j] = pascalTriangle[i-1][j] + pascalTriangle[i-1][j-1];
@@ -1110,6 +1145,7 @@ public class StringsAndArrays {
 //		System.out.println(countNumberOfWordsInAString(s));
 //		checkPalindrome("madam");
 //		System.out.println(reverseWords("  java is  easy"));
+		System.out.println(reverseSyntax(" java is easy "));
 //		letterCountInString(s);
 //		System.out.println(nonRepeatedCharsInString("j  easy"));
 //		System.out.println(duplicateCharsInString("jjjava "));
@@ -1124,7 +1160,7 @@ public class StringsAndArrays {
 //		System.out.println(occuranceOfkeyInString("azuma", 'u'));
 //		System.out.println(occuranceOfkeyInString("azuma", 'k'));
 //		System.out.println(isStringPanagram("my name is tanishq"));
-//		System.out.println(removeDuplicateUsingStringBuildMethod("Java is easy"));
+		System.out.println(removeDuplicateUsingContains("Java is easy"));
 //		System.out.println(printingMissingVowels("Am Indian"));
 //		printPermutation("abc" , 0 , 2);
 //		System.out.println(reverseTheWordsPlacementUsingSplit("java is easy"));
@@ -1133,9 +1169,9 @@ public class StringsAndArrays {
 //		printBiggestPalindromInStringUsingSplit("madam knows only malayalam");
 //		printingTheOcuurenceOfWordsUsingSplit("java is very very easy java");
 //		System.out.println(removingDuplicatesFromStringUsingSplit("Happy Happy Happyness Happy birthday to you"));
-//		System.out.println(nonRepeatingWordsInAGivenString("java is very very easy java java"));
+		System.out.println(nonRepeatingWordsInAGivenStringUsingSplit("java is very very easy java java"));
 //		System.out.println(isAnagram("keep" , "peek"));
-//		printOccurrenceOfEachLetterInStringUsingBuiltInMethods("java is easy");
+		printOccurrenceOfEachLetterInStringUsingReplace("java is easy");
 //		printingMinOccurredCharInString("java is very very easy");
 //		printingMaxOccurredCharInString("jaavvaaiiaas");
 //		System.out.println(getSumOfNumbers("jab12jaba12jaba12"));
@@ -1147,7 +1183,7 @@ public class StringsAndArrays {
 //		printIndexValueOfOccurences("banana+");
 //		removeDuplicates(new int[]{1,2,1,2,34,56,633,24,5});
 //		System.out.println(Arrays.toString(removeDuplicates1(new int[]{1,2,1,24,5})));
- 		
+// 		
 //		System.out.println(BinarySearch(new int[] {1,2,3,4,54} , 4));
 //		System.out.println(BinarySearchRecursion(new int[] {1,2,3,45,47} , 0 , 4 , 45));
 //		System.out.println(Arrays.toString(BubbleSort(new int[] {1,34,552,12,4,5})));
@@ -1182,30 +1218,33 @@ public class StringsAndArrays {
 //			System.out.println();
 //		}
 // 	}
-		// sum of diagonals using single for loop
-	int a1[][] = {{1,0,0,1},{0,1,1,0},{0,1,1,0},{1,0,0,1}};
-	for(int []arr : a1) {
-		for(int num : arr) {
-			System.out.print(num);
-		}
-		System.out.println();
-	}
-	System.out.println(sumOfDiagonalElements2(a1));
-	int[][]a  = {{1,2,3},{5,4,7},{4,5,5}};
-	for(int[] arr : MatrixMultiplication(a,a)) {
-		for(int num : arr) {
-			System.out.print(num+" ");
-		}
-		System.out.println();
-	}
-	
-	int num = 5;
-	for(int[] row : PascalTriangle(num)) {
-		for(int number : row) {
-			System.out.print(number +" ");
-		}
-		System.out.println();
-	}
+//		// sum of diagonals using single for loop
+//	int a1[][] = {{1,0,0,1},{0,1,1,0},{0,1,1,0},{1,0,0,1}};
+//	for(int []arr : a1) {
+//		for(int num : arr) {
+//			System.out.print(num);
+//		}
+//		System.out.println();
+//	}
+//	System.out.println(sumOfDiagonalElements2(a1));
+//	int[][]a  = {{1,2,3},{5,4,7},{4,5,5}};
+//	for(int[] arr : MatrixMultiplication(a,a)) {
+//		for(int num : arr) {
+//			System.out.print(num+" ");
+//		}
+//		System.out.println();
+//	}
+//	
+//	int num = 5;
+//	for(int[] row : PascalTriangle(num)) {
+//		for(int number : row) {
+//			System.out.print(number +" ");
+//		}
+//		System.out.println();
+//	}
+		int[] a = new int[] {5,4,3,2,1};
+		QuickSort(a , 0 , 4);
+		Arrays.toString(a);
 	}
 	
 }
