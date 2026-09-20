@@ -150,3 +150,32 @@ public class SingleLinkedList1 {
 	}
 
 }
+
+//Leetcode Progression 
+//Level 1 — Fundamentals
+//Design Linked List
+//Reverse Linked List
+//Middle of the Linked List
+//Linked List Cycle
+//Merge Two Sorted Lists
+
+//Level 2 — Pointer Manipulation
+//Remove Linked List Elements
+//Remove Nth Node From End of List
+//Palindrome Linked List
+//Intersection of Two Linked Lists
+//Delete Node in a Linked List
+
+//Level 3 — Advanced
+//Odd Even Linked List
+//Reorder List
+//Swap Nodes in Pairs
+//Reverse Linked List II
+//Add Two Numbers
+
+//Level 4 — Interview/Advanced
+//Copy List with Random Pointer
+//LRU Cache
+//Merge k Sorted Lists
+//Reverse Nodes in k-Group
+//Flatten a Multilevel Doubly Linked List
