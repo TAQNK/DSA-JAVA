@@ -64,6 +64,54 @@ public class BackspaceStringCompare844 {
 		}
 		return true;
     }
+	// other faster solution using hypotheical stack
+	    public boolean backspaceCompare1(String s, String t) {
+	        int i = s.length() - 1;
+	        int j = t.length() - 1;
+	        int skipS = 0, skipT = 0;
+	        while(i >= 0 || j >= 0){
+	            // finding the first char to check 
+	            while(i >= 0){
+	                if(s.charAt(i) == '#'){
+	                    skipS++;
+	                    i--;
+	                }else if (skipS > 0){
+	                    i--;
+	                    skipS--;
+	                }else{
+	                    break;
+	                }
+	            }
+	            // finding the first char to check 
+	            while(j >= 0){
+	                if(t.charAt(j) == '#'){
+	                    skipT++;
+	                    j--;
+	                }else if (skipT > 0){
+	                    j--;
+	                    skipT--;
+	                }else{
+	                    break;
+	                }
+	            }
+	            // stacks are empty
+	            if(i < 0 && j < 0){
+	                return true;
+	            }
+	            // one of stack is empty
+	            if(i < 0 || j < 0){
+	                return false;
+	            }
+	            // characters dont match
+	            if(s.charAt(i) != t.charAt(j)){
+	                return false;
+	            }
+	            i--;
+	            j--;
+	        }
+	        return true;
+	    }
+	
 	public static void main(String[] args) {
 		System.out.println(backspaceCompare("##ab","#ab#b"));
 
