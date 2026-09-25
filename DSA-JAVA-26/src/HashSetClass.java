@@ -35,6 +35,28 @@ public class HashSetClass {
 		count++;
 		return true;
 	}
+	boolean remove(Object value) {
+		int index = Math.abs(value.hashCode() % a.length);
+		Node curr = a[index];
+		Node temp = null;
+		while(curr != null) {
+			if(curr.data.equals(value)) {
+				if(temp == null) {
+					//removing the first element
+					a[index] = curr.next;
+					count--;
+					return false;
+				}else {
+					temp.next = temp.next.next;
+					count--;
+					return false;
+				}
+			}
+			temp = curr;
+			curr = curr.next;
+		}
+		return false;
+	}
 	int size() {
 		return count;
 	}
@@ -72,7 +94,10 @@ public class HashSetClass {
 		
 		hs1.add(40);
 		hs1.display();
-		System.out.println(hs1.size());
+		System.out.println("::::::::::::::::::::::::::::::::::::::");
+		hs1.remove(50);
+		hs1.display();
+//		System.out.println(hs1.size());
 		
 		System.out.println("::::::::::::::::::::::::::::::::::::::");
 		HashSetClass hs2 = new HashSetClass(2);
