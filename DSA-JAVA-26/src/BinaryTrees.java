@@ -84,6 +84,47 @@ public class BinaryTrees {
 		int heightOfRightSubTree = heightOfTree(root.right);
 		return 1 + (heightOfLeftSubTree > heightOfRightSubTree ? heightOfLeftSubTree : heightOfRightSubTree);
 	}
+	//T.C - > O(n^2)
+	int diameterOfTree(Node root) {
+		if(root == null) {
+			return 0;
+		}
+		
+		int diameter1 = diameterOfTree(root.left); // subtree left max diameter
+		int diameter2 = diameterOfTree(root.right);// subtree right max diameter
+		int diameter3 = heightOfTree(root.left) + heightOfTree(root.right) + 1;
+		
+		return Math.max(Math.max(diameter2, diameter1), diameter3);
+	}
+	
+	static class TreeInfo {
+		int ht ;
+		int di ;
+		TreeInfo(int h , int d){
+			ht = h;
+			di = d;
+		}
+		
+	}
+	// T.C - > O(n)
+	TreeInfo diameterOfTree2(Node root) {
+		if(root == null) {
+			return new TreeInfo(0,0);
+		}
+		TreeInfo leftSubtree = diameterOfTree2(root.left);
+		TreeInfo rightSubtree = diameterOfTree2(root.right);
+		
+		int myHeight = 1 + Math.max(leftSubtree.ht , rightSubtree.ht);
+		int d1 = leftSubtree.di ;
+		int d2 = rightSubtree.di;
+		int d3 = 1 + leftSubtree.ht + rightSubtree.ht;
+	
+		int myDia = Math.max(Math.max(d1, d2), d3);
+		
+		TreeInfo myInfo = new TreeInfo(myHeight , myDia);
+		return myInfo ;
+		
+	}
 	public static void main(String[] args) {
 		int nodes[] = {1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
 		BinaryTrees bt = new BinaryTrees();
