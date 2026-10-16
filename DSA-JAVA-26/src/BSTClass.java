@@ -73,11 +73,11 @@ public class BSTClass {
 	}
 
 	void PostorderTraversal() {
-		PostorderTraversal();
+		PostorderTraversal(root);
 	}
 
 	void PreorderTraversal() {
-		PreorderTraversal();
+		PreorderTraversal(root);
 	}
 
 	boolean contains(int key) {

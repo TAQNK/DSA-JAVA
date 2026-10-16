@@ -5,7 +5,7 @@ public class NumberToRomanUsingMap {
 
 	public static void romanizer(int num) {
 		
-		String res= "";
+		StringBuilder res = new StringBuilder();
 		
 		Map<Integer , String> rMap = new HashMap<Integer , String>();
 		rMap.put(1,"I");
@@ -19,14 +19,14 @@ public class NumberToRomanUsingMap {
 		rMap.put(100,"C");
 		rMap.put(400,"CD");
 		rMap.put(500,"D");
-		rMap.put(900,"XM");
+		rMap.put(900,"CM");
 		rMap.put(1000,"M");
 		
 		int[] a = {1000 ,900, 500,400,100,90,50,40,10,9,5,4,1};
 		
 		for(int n : a) {
 			while(num >= n) {
-				res += rMap.get(n);
+				res.append(rMap.get(n));
 				num -= n;
 			}
 		}
